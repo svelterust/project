@@ -7,12 +7,14 @@ defmodule Project.Application do
 
   @impl true
   def start(_type, _args) do
+    # Run migrations
+    Project.Release.migrate()
+
     children = [
       ProjectWeb.Telemetry,
       Project.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:project, :ecto_repos),
-        skip: skip_migrations?()},
+       repos: Application.fetch_env!(:project, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:project, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Project.PubSub},
       # Start a worker by calling: Project.Worker.start_link(arg)
