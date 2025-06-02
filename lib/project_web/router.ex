@@ -17,11 +17,6 @@ defmodule ProjectWeb.Router do
   scope "/", ProjectWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", ProjectLive
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ProjectWeb do
-  #   pipe_through :api
-  # end
 end
