@@ -37,10 +37,10 @@ config :tailwind,
   version: "4.1.7",
   project: [
     args: ~w(
-      --input=assets/css/app.css
-      --output=priv/static/assets/app.css
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
     ),
-    cd: Path.expand("..", __DIR__)
+    cd: Path.expand("../assets", __DIR__)
   ],
   path: System.find_executable("tailwindcss")
 
